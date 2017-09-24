@@ -1,7 +1,14 @@
 import React from 'react';
 import Chag from './Chag';
 import Calc from './Calc';
+import ResultsTable from './ResultsTable';
 
+const dummyResults = [
+  {name:"Pesach 1", date:"1/10/2017", leave:"Yes"},
+  {name:"Pesach 2", date:"2/10/2017", leave:"Bank Holiday"},
+  {name:"Pesach 3", date:"3/10/2017", leave:"Saturday"},
+  {name:"Pesach 4", date:"4/10/2017", leave:"Sunday"}
+];
 
 export default class NewApp extends React.Component {
   constructor(props){
@@ -12,6 +19,7 @@ export default class NewApp extends React.Component {
   state = {
     selected : ["p1","p3"],
     displayTable : false,
+    tableData: dummyResults
   };
 
   toggleChag = (Chag) => {
@@ -43,7 +51,7 @@ export default class NewApp extends React.Component {
         <Chag toggleChag={this.toggleChag} name="Pesach 3" bName="p3" selected={this.state.selected.indexOf("p3") > -1}/>
 
         <Calc countHolidays={this.countHolidays}/>
-        {this.state.displayTable && <p>Show Results</p>}
+        {this.state.displayTable && <ResultsTable tableData={this.state.tableData}/>}
       </div>
     );
   }
