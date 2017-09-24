@@ -1,14 +1,17 @@
 import React from 'react';
 import Chag from './Chag';
+import Calc from './Calc';
 
 
 export default class NewApp extends React.Component {
   constructor(props){
     super(props);
     this.toggleChag = this.toggleChag.bind(this);
+    this.countHolidays = this.countHolidays.bind(this);
   }
   state = {
-    selected : ["p1","p3"]
+    selected : ["p1","p3"],
+    displayTable : false,
   };
 
   toggleChag = (Chag) => {
@@ -24,6 +27,12 @@ export default class NewApp extends React.Component {
     }
   }
 
+  countHolidays = () => {
+    this.setState((prevState) => ({
+      displayTable: !prevState.displayTable
+    }));
+  }
+
   render() {
     return (
       <div>
@@ -33,6 +42,8 @@ export default class NewApp extends React.Component {
         <Chag toggleChag={this.toggleChag} name="Pesach 2" bName="p2" selected={this.state.selected.indexOf("p2") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 3" bName="p3" selected={this.state.selected.indexOf("p3") > -1}/>
 
+        <Calc countHolidays={this.countHolidays}/>
+        {this.state.displayTable && <p>Show Results</p>}
       </div>
     );
   }
