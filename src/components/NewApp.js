@@ -2,16 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import 'whatwg-fetch';
 import Chag from './Chag';
 import Calc from './Calc';
 import ResultsTable from './ResultsTable';
-
-const dummyResults = [
-  {name:"Pesach 1", date:"1/10/2017", leave:"Yes"},
-  {name:"Pesach 2", date:"2/10/2017", leave:"Bank Holiday"},
-  {name:"Pesach 3", date:"3/10/2017", leave:"Saturday"},
-  {name:"Pesach 4", date:"4/10/2017", leave:"Sunday"}
-];
 
 export default class NewApp extends React.Component {
   constructor(props){
@@ -26,13 +20,14 @@ export default class NewApp extends React.Component {
   state = {
     selected : ["p1","p3"],
     displayTable : false,
-    tableData: dummyResults,
+    tableData: false,
     startDate: moment("2017-01-01"),
     startDateFocused: false,
     endDate: moment("2017-12-31"),
     endDateFocused: false
   };
 
+  //handle chagim options de/selected
   toggleChag = (Chag) => {
     let bPresent = (this.state.selected.indexOf(Chag) > -1);
     if (bPresent){
@@ -46,12 +41,32 @@ export default class NewApp extends React.Component {
     }
   }
 
+  //handle database query to the server
   countHolidays = () => {
-    this.setState((prevState) => ({
-      displayTable: !prevState.displayTable
-    }));
+    //construct query url
+    let urlStr = this.state.startDate.format('YYYY-MM-DD');
+    urlStr += '/';
+    urlStr += this.state.endDate.format('YYYY-MM-DD');
+    urlStr += '/';
+    urlStr += '0110001';
+
+    //run ajax request to the server
+    fetch(urlStr).then( response => response.json()
+    ).then( data => {
+      console.log(data);
+
+      //update React state
+      this.setState((prevState) => ({
+        displayTable: !prevState.displayTable,
+        tableData: data
+      }));
+
+    }).catch(err => {
+      console.log(err);
+    });
   }
 
+  //datePickers state management functions
   onStartDateChange = (startDate) => {
     this.setState(() => ({ startDate }));
   }
