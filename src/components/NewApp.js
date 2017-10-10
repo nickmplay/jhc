@@ -40,6 +40,9 @@ export default class NewApp extends React.Component {
         selected: prevState.selected.concat(Chag)
       }));
     }
+
+    //hide table if already present
+    this.setState(() => ({ displayTable : false }));
   }
 
   //process chagim into a number string
