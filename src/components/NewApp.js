@@ -16,6 +16,7 @@ export default class NewApp extends React.Component {
     this.onStartDateFocusChange = this.onStartDateFocusChange.bind(this);
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onEndDateFocusChange = this.onEndDateFocusChange.bind(this);
+    this.chagStr = this.chagStr.bind(this);
   }
   state = {
     selected : ["p1","p3"],
@@ -41,6 +42,12 @@ export default class NewApp extends React.Component {
     }
   }
 
+  //process chagim into a number string
+  chagStr = () => {
+    const allChag = ['p1','p2','p3','p4','p5','p6','p7','p8'];
+    return allChag.map((c) => this.state.selected.indexOf(c) > -1 ? 1 : 0 ).join('');
+  }
+
   //handle database query to the server
   countHolidays = () => {
     //construct query url
@@ -48,7 +55,8 @@ export default class NewApp extends React.Component {
     urlStr += '/';
     urlStr += this.state.endDate.format('YYYY-MM-DD');
     urlStr += '/';
-    urlStr += '0110001';
+    //urlStr += '0110001';
+    urlStr += this.chagStr();
 
     //run ajax request to the server
     fetch(urlStr).then( response => response.json()
