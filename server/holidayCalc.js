@@ -16,13 +16,30 @@ const everyChag = [
   {name:"Pesach 8", date:"2017-10-08", leave:"Sunday"}
 ];
 
+//data object containing bank holidays
+const bankHols = [
+  '2017-01-02', '2017-04-14', '2017-04-17', '2017-05-01', '2017-05-29', '2017-08-28', '2017-12-25', '2017-12-26',
+  '2018-01-01', '2018-03-30', '2018-04-02', '2018-05-07', '2018-05-28', '2018-08-27', '2018-12-25', '2018-12-26'
+];
+
 //helper function to return true if a given date string is within two other date strings
 const dateBetween = (date1, date2, dateTest) => {
   const d1 = moment(date1);
   const d2 = moment(date2);
   const dTest = moment(dateTest);
 
-  return (dTest.diff(d1, 'days') > 0 ) && (dTest.diff(d2, 'days') < 0 );
+  return (dTest.diff(d1, 'days') >= 0 ) && (dTest.diff(d2, 'days') <= 0 );
+}
+
+//helper function to return whether the date is a Saturday or Sunday
+const isWeekend = (date1) => {
+  const d1 = moment(date1);
+  return (d1.format("ddd") == "Sat" || d1.format("ddd") == "Sun");
+}
+
+//helper function to return whether a date is a UK bank holiday
+const isBankHol = (date1) => {
+  return bankHols.indexOf(moment(date1).format("YYYY-MM-DD")) > -1;
 }
 
 //filter data object and return those selected within the chosen date range
@@ -49,5 +66,8 @@ const processOptions = (startDate, endDate, chagStr) => {
 };
 
 module.exports = {
-  processOptions
+  processOptions, 
+  dateBetween, 
+  isWeekend,
+  isBankHol
 };
