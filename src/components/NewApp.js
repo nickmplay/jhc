@@ -47,7 +47,7 @@ export default class NewApp extends React.Component {
 
   //process chagim into a number string
   chagStr = () => {
-    const allChag = ['p1','p2','p3','p4','p5','p6','p7','p8'];
+    const allChag = ['pu','p1','p2','p3','p4','p5','p6','p7','p8'];
     return allChag.map((c) => this.state.selected.indexOf(c) > -1 ? 1 : 0 ).join('');
   }
 
@@ -122,6 +122,7 @@ export default class NewApp extends React.Component {
           isOutsideRange={() => false}
         />
 
+        <Chag toggleChag={this.toggleChag} name="Purim" bName="pu" selected={this.state.selected.indexOf("pu") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 1" bName="p1" selected={this.state.selected.indexOf("p1") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 2" bName="p2" selected={this.state.selected.indexOf("p2") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 3" bName="p3" selected={this.state.selected.indexOf("p3") > -1}/>
