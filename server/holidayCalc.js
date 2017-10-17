@@ -131,7 +131,8 @@ const isBankHol = (date1) => {
 
 //filter data object and return those selected within the chosen date range
 const processOptions = (startDate, endDate, chagStr) => {
-   
+  
+  //must be the same order as the chagStr.allChag array
   const chagLong = [
     'Purim', 'Pesach 1','Pesach 2','Pesach 3','Pesach 4','Pesach 5','Pesach 6', 'Pesach 7', 'Pesach 8',
     'Shavuot 1', 'Shavuot 2', 'Tisha b-av', 'Rosh Hashana 1', 'Rosh Hashana 2', 'Yom Kippur', 
@@ -142,7 +143,7 @@ const processOptions = (startDate, endDate, chagStr) => {
   
   //reformat data from binary string
   let chagChosen = [];
-  for(let i=0; i<chagStr; i++){
+  for(let i=0; i<chagStr.length; i++){
     if(chagStr[i] == 1 ){
       chagChosen.push(chagLong[i]);
     }
