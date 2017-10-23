@@ -1,0 +1,32 @@
+.container {
+  max-width: $max-w;
+  margin: 0 auto;
+  padding: 0 $m-size;
+}
+
+.container_flex {
+  max-width: $max-w;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: $s-size;
+  flex-wrap: wrap;
+}
+
+.container_break {
+  width:98%;
+}
+
+.container_quarter {
+  display: flex;
+  width:23%;
+  justify-content: center
+}
+
+//change from 4 per row to 2 per row by doubling width
+@media (max-width: $desktop-breakpoint) {
+  .container_quarter {
+    width:48%;
+  }
+}

@@ -102,73 +102,105 @@ export default class NewApp extends React.Component {
   render() {
     return (
       <div>
-        <h1>Count Jewish Holidays</h1>
-        <h4>Enter the start and end dates, select chagim, then push Calculate to see how many days of annual leave you'll need </h4>
+        <div className='head'>
+        <div className='container'>
+          <h1>Count Jewish Holidays</h1>
+          <h4>Enter the start and end dates, <span className='bc_span'>select</span> the chagim you want to take, then push <span className='bcalc_span'>Count</span> to see how many days of annual leave you'll need </h4>
+        </div>
+        </div>
+        
+        <div className='container_flex'>
+          
+          <p className='container_quarter'>Start Date: </p>
+          <SingleDatePicker
+            className='container_quarter'
+            date={this.state.startDate}
+            onDateChange={this.onStartDateChange}
+            displayFormat="DD/MM/YYYY"
+            anchorDirection="right"
+            focused={this.state.startDateFocused}
+            onFocusChange={this.onStartDateFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+          />
+          
+          <p className='container_quarter'>End Date: </p>
+          <SingleDatePicker
+            className='container_quarter'
+            date={this.state.endDate}
+            onDateChange={this.onEndDateChange}
+            displayFormat="DD/MM/YYYY"
+            anchorDirection="right"
+            focused={this.state.endDateFocused}
+            onFocusChange={this.onEndDateFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+          />
+          
+        </div>
 
-        <p>Start Date: </p>
-        <SingleDatePicker
-          date={this.state.startDate}
-          onDateChange={this.onStartDateChange}
-          displayFormat="DD/MM/YYYY"
-          focused={this.state.startDateFocused}
-          onFocusChange={this.onStartDateFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
-
-        <p>End Date: </p>
-        <SingleDatePicker
-          date={this.state.endDate}
-          onDateChange={this.onEndDateChange}
-          displayFormat="DD/MM/YYYY"
-          focused={this.state.endDateFocused}
-          onFocusChange={this.onEndDateFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+        <div className='container_flex'>
 
         <Chag toggleChag={this.toggleChag} name="Purim" bName="pu" selected={this.state.selected.indexOf("pu") > -1}/>
+        <div className='container_break'></div>
 
         <Chag toggleChag={this.toggleChag} name="Pesach 1" bName="p1" selected={this.state.selected.indexOf("p1") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 2" bName="p2" selected={this.state.selected.indexOf("p2") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 3" bName="p3" selected={this.state.selected.indexOf("p3") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 4" bName="p4" selected={this.state.selected.indexOf("p4") > -1}/>
+        <div className='container_break'></div>
         <Chag toggleChag={this.toggleChag} name="Pesach 5" bName="p5" selected={this.state.selected.indexOf("p5") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 6" bName="p6" selected={this.state.selected.indexOf("p6") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 7" bName="p7" selected={this.state.selected.indexOf("p7") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Pesach 8" bName="p8" selected={this.state.selected.indexOf("p8") > -1}/>
+        <div className='container_break'></div>
 
         <Chag toggleChag={this.toggleChag} name="Shavuot 1" bName="sh1" selected={this.state.selected.indexOf("sh1") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Shavuot 2" bName="sh2" selected={this.state.selected.indexOf("sh2") > -1}/>
+        <div className='container_break'></div>
 
         <Chag toggleChag={this.toggleChag} name="Tisha b-av" bName="tb" selected={this.state.selected.indexOf("tb") > -1}/>
+        <div className='container_break'></div>
 
         <Chag toggleChag={this.toggleChag} name="Rosh Hashana 1" bName="rh1" selected={this.state.selected.indexOf("rh1") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Rosh Hashana 2" bName="rh2" selected={this.state.selected.indexOf("rh2") > -1}/>
+        <div className='container_break'></div>
+
         <Chag toggleChag={this.toggleChag} name="Yom Kippur" bName="yk" selected={this.state.selected.indexOf("yk") > -1}/>
-        
+        <div className='container_break'></div>
+
         <Chag toggleChag={this.toggleChag} name="Sukkot 1" bName="s1" selected={this.state.selected.indexOf("s1") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Sukkot 2" bName="s2" selected={this.state.selected.indexOf("s2") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Sukkot 3" bName="s3" selected={this.state.selected.indexOf("s3") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Sukkot 4" bName="s4" selected={this.state.selected.indexOf("s4") > -1}/>
+        <div className='container_break'></div>
         <Chag toggleChag={this.toggleChag} name="Sukkot 5" bName="s5" selected={this.state.selected.indexOf("s5") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Sukkot 6" bName="s6" selected={this.state.selected.indexOf("s6") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Sukkot 7" bName="s7" selected={this.state.selected.indexOf("s7") > -1}/>
+        <div className='container_break'></div>
 
         <Chag toggleChag={this.toggleChag} name="Shmini Atzeret" bName="sa" selected={this.state.selected.indexOf("sa") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Simchat Torah" bName="st" selected={this.state.selected.indexOf("st") > -1}/>
+        <div className='container_break'></div>
 
         <Chag toggleChag={this.toggleChag} name="Chanukah 1" bName="c1" selected={this.state.selected.indexOf("c1") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Chanukah 2" bName="c2" selected={this.state.selected.indexOf("c2") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Chanukah 3" bName="c3" selected={this.state.selected.indexOf("c3") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Chanukah 4" bName="c4" selected={this.state.selected.indexOf("c4") > -1}/>
+        <div className='container_break'></div>
         <Chag toggleChag={this.toggleChag} name="Chanukah 5" bName="c5" selected={this.state.selected.indexOf("c5") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Chanukah 6" bName="c6" selected={this.state.selected.indexOf("c6") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Chanukah 7" bName="c7" selected={this.state.selected.indexOf("c7") > -1}/>
         <Chag toggleChag={this.toggleChag} name="Chanukah 8" bName="c8" selected={this.state.selected.indexOf("c8") > -1}/>
+        </div>
 
+        <div className='container_flex'>
         <Calc countHolidays={this.countHolidays}/>
+        </div>
+
+        <div className='container_flex'>
         {this.state.displayTable && <ResultsTable tableData={this.state.tableData}/>}
+        </div>
       </div>
     );
   }

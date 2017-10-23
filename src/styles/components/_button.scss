@@ -1,24 +1,38 @@
 // Button
 .button-chosen {
-  background: blue;
+  background: $blue;
   border: none;
   color: white;
   font-weight: 500;
   padding: $s-size;
+  margin-bottom: $s-size;
+  white-space: nowrap
+}
+
+.bc_span {
+  background: $blue;
+  padding: 3px;
 }
 
 .button-not-chosen {
-  background: grey;
+  background: $grey;
+  border: none;
+  color: white;
+  font-weight: 500;
+  padding: $s-size;
+  margin-bottom: $s-size;
+  white-space: nowrap
+}
+
+.button-calc {
+  background:$green;
   border: none;
   color: white;
   font-weight: 500;
   padding: $s-size;
 }
 
-.button-calc {
-  background: green;
-  border: none;
-  color: white;
-  font-weight: 500;
-  padding: $s-size;
+.bcalc_span {
+  background:$green;
+  padding:3px;
 }

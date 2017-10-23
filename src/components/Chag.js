@@ -19,7 +19,7 @@ export default class Chag extends React.Component {
       cn = "button-not-chosen";
     }
     return (
-        <div>
+        <div className='container_quarter'>
         <button
           onClick={this.processButton}
           className={cn}  
