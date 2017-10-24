@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
@@ -6,6 +7,7 @@ import 'whatwg-fetch';
 import Chag from './Chag';
 import Calc from './Calc';
 import ResultsTable from './ResultsTable';
+import ErrMsg from './ErrMsg';
 
 export default class NewApp extends React.Component {
   constructor(props){
@@ -17,6 +19,8 @@ export default class NewApp extends React.Component {
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onEndDateFocusChange = this.onEndDateFocusChange.bind(this);
     this.chagStr = this.chagStr.bind(this);
+    this.validateOptions = this.validateOptions.bind(this);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
   }
   state = {
     selected : ['p1', 'p2', 'p7', 'p8', 'sh1', 'sh2', 'rh1', 'rh2', 'yk', 's1', 's2', 'sa', 'st'],
@@ -25,9 +29,15 @@ export default class NewApp extends React.Component {
     startDate: moment("2017-01-01"),
     startDateFocused: false,
     endDate: moment("2017-12-31"),
-    endDateFocused: false
+    endDateFocused: false,
+    errs: []
   };
 
+  //scroll to results
+  scrollToBottom = () => {
+    document.getElementById("end").scrollIntoView();
+  }
+  
   //handle chagim options de/selected
   toggleChag = (Chag) => {
     let bPresent = (this.state.selected.indexOf(Chag) > -1);
@@ -58,6 +68,11 @@ export default class NewApp extends React.Component {
 
   //handle database query to the server
   countHolidays = () => {
+    //validate options
+    if(!this.validateOptions()){
+      return false;
+    }
+
     //construct query url
     let urlStr = this.state.startDate.format('YYYY-MM-DD');
     urlStr += '/';
@@ -76,6 +91,8 @@ export default class NewApp extends React.Component {
         displayTable: !prevState.displayTable,
         tableData: data
       }));
+      
+      this.scrollToBottom();
 
     }).catch(err => {
       console.log(err);
@@ -97,6 +114,58 @@ export default class NewApp extends React.Component {
 
   onEndDateFocusChange = ({ focused }) => {
     this.setState(() => ({ endDateFocused: focused }));
+  }
+
+  //input validation
+  validateOptions = () => {
+    //clear prior validation results if present
+    this.setState(() => ({ errs: [] }));
+    
+    let bFail = false;
+    const dMin = moment("2017-01-01");
+    const dMax = moment("2019-12-31");
+    
+    //check start date is later than min
+    if(this.state.startDate.diff(dMin, 'days') < 0){
+      this.setState((prevState) => ({
+        errs: prevState.errs.concat('Choose a start date later than 01/01/2017')
+      }));
+      bFail = true;
+    }
+
+    //check end date is later than min
+    if(this.state.endDate.diff(dMin, 'days') < 0){
+      this.setState((prevState) => ({
+        errs: prevState.errs.concat('Choose an end date later than 01/01/2017')
+      }));
+      bFail = true;
+    }
+
+    //check start date is not later than max
+    if(this.state.startDate.diff(dMax, 'days') >= 0){
+      this.setState((prevState) => ({
+        errs: prevState.errs.concat('Choose a start date before 31/12/2019')
+      }));
+      bFail = true;
+    }
+
+    //check end date is not later than max
+    if(this.state.endDate.diff(dMax, 'days') >= 0){
+      this.setState((prevState) => ({
+        errs: prevState.errs.concat('Choose an end date before 31/12/2019')
+      }));
+      bFail = true;
+    }
+
+    //check at least one option has been selected
+    if(this.state.selected.length < 1){
+      this.setState((prevState) => ({
+        errs: prevState.errs.concat('Choose at least one Jewish holiday')
+      }));
+      bFail = true;
+    }
+
+    return !bFail;
   }
 
   render() {
@@ -199,8 +268,11 @@ export default class NewApp extends React.Component {
         </div>
 
         <div className='container_flex'>
+        {this.state.errs.length > 0 && <ErrMsg errs={this.state.errs} />}
         {this.state.displayTable && <ResultsTable tableData={this.state.tableData}/>}
         </div>
+
+        <div id='end'></div>
       </div>
     );
   }
