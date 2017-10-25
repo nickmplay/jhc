@@ -21,3 +21,5 @@ To run the app, run `$ yarn run start` which runs a local server at `localhost:3
 
 A testing suite using mocha and expect has been set up to test app functionality. The results can be seen by running the `$ yarn run test` command and new tests can be entered in the tests directory.
 
+A hosted version of the site can be viewed at `https://jhc2017.herokuapp.com/`
+
