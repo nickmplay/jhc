@@ -166,12 +166,10 @@ const processOptions = (startDate, endDate, chagStr) => {
     }
   }
 
-  
-  //reformat dates to be dd/mm/yyyy
+  //add display date to be dd/mm/yyyy
   for(let i=0; i<results2.length; i++){
-    results2[i].date = moment(results2[i].date).format("DD/MM/YYYY");
+    results2[i].displayDate = moment(results2[i].date).format("DD/MM/YYYY");
   }
-  
 
   //return `${startDate} and ${endDate} and ${chagStr}`;
   return results2;

@@ -7,6 +7,7 @@ import 'whatwg-fetch';
 import Chag from './Chag';
 import Calc from './Calc';
 import ResultsTable from './ResultsTable';
+import ResSentence from './ResSentence';
 import ErrMsg from './ErrMsg';
 
 export default class NewApp extends React.Component {
@@ -26,6 +27,8 @@ export default class NewApp extends React.Component {
     selected : ['p1', 'p2', 'p7', 'p8', 'sh1', 'sh2', 'rh1', 'rh2', 'yk', 's1', 's2', 'sa', 'st'],
     displayTable : false,
     tableData: false,
+    displayResultSentence : false,
+    ResultSentence: false,
     startDate: moment("2018-01-01"),
     startDateFocused: false,
     endDate: moment("2018-12-31"),
@@ -52,7 +55,7 @@ export default class NewApp extends React.Component {
     }
 
     //hide table if already present
-    this.setState(() => ({ displayTable : false }));
+    this.setState(() => ({ displayTable: false, displayResultSentence: false }));
   }
 
   //process chagim into a number string
@@ -84,12 +87,19 @@ export default class NewApp extends React.Component {
     //run ajax request to the server
     fetch(urlStr).then( response => response.json()
     ).then( data => {
-      console.log(data);
+      //console.log(data);
+
+      //create results sentence
+      let numHol = data.filter((e) => e.leave == "Yes" ).length;
+      let resStr = `You will need to take #${numHol} days# of annual leave`;
+      console.log(resStr); 
 
       //update React state
       this.setState((prevState) => ({
         displayTable: !prevState.displayTable,
-        tableData: data
+        tableData: data,
+        ResultSentence: resStr,
+        displayResultSentence: !prevState.displayResultSentence,
       }));
       
       this.scrollToBottom();
@@ -275,6 +285,7 @@ export default class NewApp extends React.Component {
 
         <div className='container_flex'>
         <Calc countHolidays={this.countHolidays}/>
+        {this.state.displayResultSentence && <ResSentence msg={this.state.ResultSentence}/>}
         {this.state.displayTable && <ResultsTable tableData={this.state.tableData}/>}
         </div>
 

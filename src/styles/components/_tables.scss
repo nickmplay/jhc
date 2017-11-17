@@ -1,7 +1,25 @@
 .results-table {
   border-collapse: collapse;
+  margin-bottom: $m-size;
 }
 
 .results-table td, th {
-  border: 1px solid blue;
+  border: 1px solid white;
+  padding: 2px;
+}
+
+.results-table th {
+  background:$green;
+  color: white;
+  font-weight: 500;
+}
+
+.anYes {
+  background:$blue;
+  color: white;
+}
+
+.anNo {
+  background:$grey;
+  color: white;
 }

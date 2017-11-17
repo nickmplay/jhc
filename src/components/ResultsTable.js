@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TableRows = props => <tbody>{props.tableData.map((item, i) => {
-  return <tr key={i}>
-    <td>{item.date}</td>
+  return <tr key={i} className={item.leave=="Yes" ? 'anYes' : 'anNo'} >
+    <td>{item.displayDate}</td>
     <td>{item.name}</td>
     <td>{item.leave}</td>
   </tr>})
