@@ -26,9 +26,9 @@ export default class NewApp extends React.Component {
     selected : ['p1', 'p2', 'p7', 'p8', 'sh1', 'sh2', 'rh1', 'rh2', 'yk', 's1', 's2', 'sa', 'st'],
     displayTable : false,
     tableData: false,
-    startDate: moment("2017-01-01"),
+    startDate: moment("2018-01-01"),
     startDateFocused: false,
-    endDate: moment("2017-12-31"),
+    endDate: moment("2018-12-31"),
     endDateFocused: false,
     errs: []
   };
@@ -165,6 +165,14 @@ export default class NewApp extends React.Component {
       bFail = true;
     }
 
+    //check the start date is after the end date
+    if(this.state.startDate.diff(this.state.endDate, 'days') >= 0){
+      this.setState((prevState) => ({
+        errs: prevState.errs.concat('Choose a start date that is before the end date')
+      }));
+      bFail = true;
+    }
+
     return !bFail;
   }
 
@@ -263,12 +271,10 @@ export default class NewApp extends React.Component {
         <Chag toggleChag={this.toggleChag} name="Chanukah 8" bName="c8" selected={this.state.selected.indexOf("c8") > -1}/>
         </div>
 
-        <div className='container_flex'>
-        <Calc countHolidays={this.countHolidays}/>
-        </div>
+        {this.state.errs.length > 0 && <div className='container_flex'><ErrMsg errs={this.state.errs} /></div>}
 
         <div className='container_flex'>
-        {this.state.errs.length > 0 && <ErrMsg errs={this.state.errs} />}
+        <Calc countHolidays={this.countHolidays}/>
         {this.state.displayTable && <ResultsTable tableData={this.state.tableData}/>}
         </div>
 
