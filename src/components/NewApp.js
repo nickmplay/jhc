@@ -29,9 +29,9 @@ export default class NewApp extends React.Component {
     tableData: false,
     displayResultSentence : false,
     ResultSentence: false,
-    startDate: moment("2018-01-01"),
+    startDate: moment("2019-01-01"),
     startDateFocused: false,
-    endDate: moment("2018-12-31"),
+    endDate: moment("2019-12-31"),
     endDateFocused: false,
     errs: []
   };
@@ -160,7 +160,7 @@ export default class NewApp extends React.Component {
     }
 
     //check end date is not later than max
-    if(this.state.endDate.diff(dMax, 'days') >= 0){
+    if(this.state.endDate.diff(dMax, 'days') > 0){
       this.setState((prevState) => ({
         errs: prevState.errs.concat('Choose an end date before 31/12/2019')
       }));

@@ -8,6 +8,8 @@ const TableRows = props => <tbody>{props.tableData.map((item, i) => {
   </tr>})
 }</tbody>;
 
+
+
 export default class ResultsTable extends React.Component {
   render(){
     return (
