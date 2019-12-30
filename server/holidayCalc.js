@@ -99,14 +99,48 @@ const everyChag = [
   {name:"Chanukah 5", date:"2019-12-27"},
   {name:"Chanukah 6", date:"2019-12-28"},
   {name:"Chanukah 7", date:"2019-12-29"},
-  {name:"Chanukah 8", date:"2019-12-30"} 
+  {name:"Chanukah 8", date:"2019-12-30"},
+  
+    {name:'Purim', date:'2020-03-10'},
+  {name:'Pesach 1', date:'2020-04-09'},
+  {name:'Pesach 2', date:'2020-04-10'},
+  {name:'Pesach 3', date:'2020-04-11'},
+  {name:'Pesach 4', date:'2020-04-12'},
+  {name:'Pesach 5', date:'2020-04-13'},
+  {name:'Pesach 6', date:'2020-04-14'},
+  {name:'Pesach 7', date:'2020-04-15'},
+  {name:'Pesach 8', date:'2020-04-16'},
+  {name:'Shavuot 1', date:'2020-05-29'},
+  {name:'Shavuot 2', date:'2020-05-30'},
+  {name:'Tisha b-av', date:'2020-07-30'},
+  {name:'Rosh Hashana 1', date:'2020-09-19'},
+  {name:'Rosh Hashana 2', date:'2020-09-20'},
+  {name:'Yom Kippur', date:'2020-09-28'},
+  {name:'Sukkot 1', date:'2020-10-03'},
+  {name:'Sukkot 2', date:'2020-10-04'},
+  {name:'Sukkot 3', date:'2020-10-05'},
+  {name:'Sukkot 4', date:'2020-10-06'},
+  {name:'Sukkot 5', date:'2020-10-07'},
+  {name:'Sukkot 6', date:'2020-10-08'},
+  {name:'Sukkot 7', date:'2020-10-09'},
+  {name:'Shmini Atzeret', date:'2020-10-10'},
+  {name:'Simchat Torah', date:'2020-10-11'},
+  {name:'Chanukah 1', date:'2020-12-11'},
+  {name:'Chanukah 2', date:'2020-12-12'},
+  {name:'Chanukah 3', date:'2020-12-13'},
+  {name:'Chanukah 4', date:'2020-12-14'},
+  {name:'Chanukah 5', date:'2020-12-15'},
+  {name:'Chanukah 6', date:'2020-12-16'},
+  {name:'Chanukah 7', date:'2020-12-17'},
+  {name:'Chanukah 8', date:'2020-12-18'}
 ];
 
 //data object containing bank holidays
 const bankHols = [
   '2017-01-02', '2017-04-14', '2017-04-17', '2017-05-01', '2017-05-29', '2017-08-28', '2017-12-25', '2017-12-26',
   '2018-01-01', '2018-03-30', '2018-04-02', '2018-05-07', '2018-05-28', '2018-08-27', '2018-12-25', '2018-12-26',
-  '2019-01-01', '2019-04-19', '2019-04-22', '2019-05-06', '2019-05-27', '2019-08-26', '2019-12-25', '2019-12-26'
+  '2019-01-01', '2019-04-19', '2019-04-22', '2019-05-06', '2019-05-27', '2019-08-26', '2019-12-25', '2019-12-26',
+  '2020-01-01', '2020-04-10', '2020-04-13', '2020-05-08', '2020-05-25', '2020-08-31', '2020-12-25', '2020-12-28'
 ];
 
 //helper function to return true if a given date string is within two other date strings

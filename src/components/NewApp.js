@@ -29,9 +29,9 @@ export default class NewApp extends React.Component {
     tableData: false,
     displayResultSentence : false,
     ResultSentence: false,
-    startDate: moment("2019-01-01"),
+    startDate: moment("2020-01-01"),
     startDateFocused: false,
-    endDate: moment("2019-12-31"),
+    endDate: moment("2020-12-31"),
     endDateFocused: false,
     errs: []
   };
@@ -133,7 +133,7 @@ export default class NewApp extends React.Component {
     
     let bFail = false;
     const dMin = moment("2017-01-01");
-    const dMax = moment("2019-12-31");
+    const dMax = moment("2020-12-31");
     
     //check start date is later than min
     if(this.state.startDate.diff(dMin, 'days') < 0){
@@ -154,7 +154,7 @@ export default class NewApp extends React.Component {
     //check start date is not later than max
     if(this.state.startDate.diff(dMax, 'days') >= 0){
       this.setState((prevState) => ({
-        errs: prevState.errs.concat('Choose a start date before 31/12/2019')
+        errs: prevState.errs.concat('Choose a start date before 31/12/2020')
       }));
       bFail = true;
     }
@@ -162,7 +162,7 @@ export default class NewApp extends React.Component {
     //check end date is not later than max
     if(this.state.endDate.diff(dMax, 'days') > 0){
       this.setState((prevState) => ({
-        errs: prevState.errs.concat('Choose an end date before 31/12/2019')
+        errs: prevState.errs.concat('Choose an end date before 31/12/2020')
       }));
       bFail = true;
     }
@@ -200,6 +200,7 @@ export default class NewApp extends React.Component {
           
           <p className='container_quarter'>Start Date: </p>
           <SingleDatePicker
+            id='date1'
             className='container_quarter'
             date={this.state.startDate}
             onDateChange={this.onStartDateChange}
@@ -213,6 +214,7 @@ export default class NewApp extends React.Component {
           
           <p className='container_quarter'>End Date: </p>
           <SingleDatePicker
+            id='date2'
             className='container_quarter'
             date={this.state.endDate}
             onDateChange={this.onEndDateChange}

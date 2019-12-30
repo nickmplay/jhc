@@ -11,7 +11,7 @@
     "serve": "live-server public/",
     "start": "node server/server.js",
     "build": "webpack",
-    "dev-server": "webpack-dev-server", 
+    "dev-server": "webpack-dev-server",
     "test": "mocha tests/**.test.js"
   },
   "dependencies": {
